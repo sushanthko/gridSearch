@@ -1,10 +1,6 @@
 package com.example.gridSearch.utils;
 
-import org.springframework.util.ResourceUtils;
-
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -21,15 +17,14 @@ public class Solver {
         try {
             // read all words
             // filter out words shorter than length argument
-            Path wordFilePath = ResourceUtils.getFile(
-                    String.format("classpath:static/words/%s", wordFileName)).toPath();
-            Set<String> wordSet = Files.lines(wordFilePath)
-                    .filter(x -> x.length() >= minlength).collect(Collectors.toSet());
+            Set<String> wordSet = new FileStream(String.format("static/words/%s", wordFileName))
+                    .getLines()
+                    .filter(x -> x.length() >= minlength)
+                    .collect(Collectors.toSet());
 
             // read the character grid
-            Path gridFilePath = ResourceUtils.getFile(
-                    String.format("classpath:static/grids/%s", gridFileName)).toPath();
-            char[][] grid = Files.lines(gridFilePath)
+            char[][] grid = new FileStream(String.format("static/grids/%s", gridFileName))
+                    .getLines()
                     .map(String::toCharArray).toArray((char[][]::new));
 
             List<String> words = new ArrayList<>(wordSet);

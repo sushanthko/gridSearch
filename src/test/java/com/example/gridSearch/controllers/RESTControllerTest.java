@@ -1,5 +1,6 @@
 package com.example.gridSearch.controllers;
 
+import com.example.gridSearch.utils.FileStream;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -7,10 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.util.ResourceUtils;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -33,9 +30,9 @@ class RESTControllerTest {
         int length = 0;
         String solutionFileName = "solution100x100.txt";
 
-        Path solutionFilePath = ResourceUtils.getFile(
-                String.format("classpath:static/solutions/%s", solutionFileName)).toPath();
-        String[] solution = Files.lines(solutionFilePath).toArray(String[]::new);
+        String[] solution = new FileStream(String.format("static/solutions/%s", solutionFileName))
+                .getLines()
+                .toArray(String[]::new);
 
         String solutionResult = new ObjectMapper().writeValueAsString(solution);
 
