@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Word Finder</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1>Solver</h1>
+            <form action="#" method="post" th:action="@{/}" th:object="${formData}">
+                <p>Grid:
+                    <select th:field="*{gridFile}">
+                        <option th:each="file : ${gridFileList}" th:text="${file}"
+                                th:value="${file}"></option>
+                    </select>
+                </p>
+                <p>Words:
+                    <select th:field="*{wordFile}">
+                        <option name="wordFile" th:each="file : ${wordFileList}" th:text="${file}"
+                                th:value="${file}"></option>
+                    </select>
+                </p>
+                <p>Length:
+                    <input th:field="*{length}" type="text"/>
+                </p>
+                <p>
+                    <input type="submit" value="Submit"/>
+                    <input type="reset" value="Reset"/>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
