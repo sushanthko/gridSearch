@@ -11,8 +11,15 @@
     <div class="row">
         <div class="col">
             <h1>Result</h1>
-            <p th:each="word : ${result}"
-               th:text="${word}">A Smoke Test</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p th:each="word : ${result}" th:text="${word}">A Smoke Test</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
             <a href="/">Search another grid</a>
         </div>
     </div>

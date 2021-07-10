@@ -11,26 +11,31 @@
     <div class="row">
         <div class="col">
             <h1>Solver</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-auto">
             <form action="#" method="post" th:action="@{/}" th:object="${formData}">
-                <p>Grid:
-                    <select th:field="*{gridFile}">
+                <div class="mb-3">
+                    <label class="form-label" for="grid-file">Grid</label>
+                    <select class="form-select" id="grid-file" th:field="*{gridFile}">
                         <option th:each="file : ${gridFileList}" th:text="${file}"
                                 th:value="${file}"></option>
                     </select>
-                </p>
-                <p>Words:
-                    <select th:field="*{wordFile}">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="words-file">Words</label>
+                    <select class="form-select" id="words-file" th:field="*{wordFile}">
                         <option name="wordFile" th:each="file : ${wordFileList}" th:text="${file}"
                                 th:value="${file}"></option>
                     </select>
-                </p>
-                <p>Length:
-                    <input th:field="*{length}" type="text"/>
-                </p>
-                <p>
-                    <input type="submit" value="Submit"/>
-                    <input type="reset" value="Reset"/>
-                </p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="length">Length</label>
+                    <input class="form-control" id="length" th:field="*{length}" type="number"/>
+                </div>
+                <button class="btn btn-outline-primary" type="submit">Submit</button>
+                <button class="btn btn-outline-primary" type="reset">Reset</button>
             </form>
         </div>
     </div>
